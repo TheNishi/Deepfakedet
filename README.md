@@ -59,46 +59,90 @@ FasterViT: real (98.55% confidence)
   </tr>
 </table>
 
-## Installation
-To set up the project, follow these steps:
-1. **Clone the repository.**
-2. **Install dependencies:** We use Python 3.12+  
-   Install with:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Installation & Setup
 
-## Orchestrating runs (training & inference)
+Follow these steps to set up and run the project from your terminal:
+
+### 1. Navigate to the project directory
+Open your terminal (PowerShell, Command Prompt, or terminal emulator) and navigate to the project directory:
+```bash
+# For Windows (if stored on drive D:):
+d:
+cd "d:\DEEPFAKE DET"
+
+# For Unix/macOS:
+cd "/path/to/DEEPFAKE DET"
+```
+
+### 2. Set up a Python Virtual Environment
+It is highly recommended to isolate your dependencies using a virtual environment:
+```bash
+# Create the virtual environment
+python -m venv venv
+
+# Activate the virtual environment:
+# Windows (PowerShell):
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.\venv\Scripts\Activate.ps1
+
+# Windows (CMD):
+venv\Scripts\activate.bat
+
+# Unix/macOS:
+source venv/bin/activate
+```
+
+### 3. Install dependencies
+Install all required libraries defined in [requirements.txt](file:///d:/DEEPFAKE%20DET/requirements.txt):
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Orchestrating Runs & Running Scripts
 
 There are three main entrypoints, all routed through `orchestrator.py` and driven by YAML configs under `config/`:
 
-- **`train.py`**: trains the models listed under `models:` in `config/train.yaml` (or a custom config).
-- **`inference.py`**: runs batch evaluation using `config/inference.yaml`, logging metrics, plots, and confusion matrices.
-- **`web_ui.py`**: launches a browser-based Gradio UI for single-image inference and Grad-CAM overlays, using the same config and `selection` as the orchestrator.
+- **`train.py`**: Trains the models listed under `models:` in `config/train.yaml` (or a custom config).
+- **`inference.py`**: Runs batch evaluation or single-image/video forensics.
+- **`web_ui.py`**: Launches an interactive browser-based Gradio UI.
 
-### Commands
+### Running Commands
 
-1. **Train models listed in `config/train.yaml`:**
-   ```bash
-   python train.py
-   ```
+#### 1. Start the Interactive Web UI
+This launches a browser-based forensic dashboard where you can upload images/videos, examine Grad-CAM heatmaps, and view ensembled authenticity ratings:
+```bash
+python web_ui.py --config config/inference.yaml
+```
+Once started, open the link in your browser: `http://127.0.0.1:7860`
 
-2. **Evaluate models defined in `config/inference.yaml`:**
-   ```bash
-   python inference.py
-   ```
+#### 2. Run Forensic Analysis on a Single Image/Video
+To run single-file analysis and print the report directly in your terminal, pass the `--input` flag pointing to any media file:
+```bash
+# Analyze a real image
+python inference.py --input docs/images/donald-trump-real.jpg
 
-3. **Run the interactive web UI (Grad-CAM enabled):**
-   ```bash
-   python web_ui.py --config config/inference.yaml
-   ```
-   - Honors the YAML’s `models` and `selection` so the UI stays in sync with orchestrator runs.
-   - Uses the per-model transforms and weight paths from the config (relative to the current working directory or absolute paths).
-   - Exports CAM composites to `outputs/cam_exports/`.
+# Analyze a deepfake image
+python inference.py --input docs/images/mark-zuckerberg-deepfake.webp
+```
 
-Pass `--config` to any script to point at an alternate YAML while keeping the same structure.
+#### 3. Run Batch Evaluation
+To evaluate models defined in `config/inference.yaml` against a test dataset:
+```bash
+python inference.py
+```
+
+#### 4. Train Models
+To start training models listed in `config/train.yaml`:
+```bash
+python train.py
+```
+
+*Note: You can pass `--config <path_to_config>` to any of these scripts to use a custom YAML configuration.*
 
 Each run directory contains `checkpoints/` (latest & best checkpoints), `logs/` (console outputs), and `plots/` (confusion matrix and ROC curve when labels are available). The setup targets frame-level deepfake vs. real classification but works for multiclass `ImageFolder` datasets as well.
+
 
 ### Per-model transform toggles
 
