@@ -57,11 +57,14 @@ def ensure_weights_exist(model_name: str, weights_path: Path) -> None:
         print(f"[Forensics] No download URL mapped for model '{model_name}'.")
 
 
-def check_metadata_integrity(image: Image.Image) -> tuple[str, float, list[str]]:
+def check_metadata_integrity(image: Image.Image) -> tuple[str, float, list[str], dict]:
     """Inspect image EXIF tags for software signatures or missing metadata."""
+    from PIL import ExifTags
     exif = image.getexif()
+    meta_info = {"camera": "Unknown", "timestamp": "Unknown", "gps": "Unknown"}
+    
     if not exif or len(exif.keys()) == 0:
-        return "Missing", 0.0, []
+        return "Missing", 0.0, [], meta_info
 
     # Suspicious editing software tags (e.g. Photoshop, GIMP, Canva)
     suspicious_software = [
@@ -70,25 +73,42 @@ def check_metadata_integrity(image: Image.Image) -> tuple[str, float, list[str]]
     ]
 
     found_tags = []
-    for tag_id in exif:
-        try:
-            val = str(exif.get(tag_id)).lower()
+    try:
+        make = ""
+        model = ""
+        for tag_id, value in exif.items():
+            tag_name = ExifTags.TAGS.get(tag_id, tag_id)
+            val_str = str(value).lower()
+            
+            # Look for software
             for soft in suspicious_software:
-                if soft in val and soft not in found_tags:
+                if soft in val_str and soft not in found_tags:
                     found_tags.append(soft)
-        except Exception:
-            pass
+                    
+            if tag_name == "Make": make = str(value)
+            elif tag_name == "Model": model = str(value)
+            elif tag_name == "DateTime" or tag_name == "DateTimeOriginal": 
+                meta_info["timestamp"] = str(value)
+                
+        if make or model:
+            meta_info["camera"] = f"{make} {model}".strip()
 
-    if found_tags:
-        return "Suspicious", 50.0, found_tags
+        gps_info = exif.get_ifd(ExifTags.IFD.GPSInfo) if hasattr(exif, 'get_ifd') else None
+        if gps_info:
+            meta_info["gps"] = "Present (Coordinates found)"
+    except Exception:
+        pass
 
-    return "Valid", 100.0, []
+    status = "Suspicious" if found_tags else "Valid"
+    score = 50.0 if found_tags else 100.0
+    return status, score, found_tags, meta_info
 
 
-def check_video_metadata_integrity(video_path: Path) -> tuple[str, float, list[str]]:
+def check_video_metadata_integrity(video_path: Path) -> tuple[str, float, list[str], dict]:
     """Perform binary carving on video headers to detect editing software signatures."""
+    meta_info = {"camera": "Unknown", "timestamp": "Unknown", "gps": "Unknown"}
     if not video_path.exists():
-        return "Missing", 0.0, []
+        return "Missing", 0.0, [], meta_info
 
     # Read start and end segments of the video file to inspect headers and trailers
     try:
@@ -116,17 +136,17 @@ def check_video_metadata_integrity(video_path: Path) -> tuple[str, float, list[s
                 found_tags.append(sig.decode('utf-8', errors='ignore'))
 
         if found_tags:
-            return "Suspicious", 50.0, found_tags
+            return "Suspicious", 50.0, found_tags, meta_info
 
         # Check if it has basic video container signatures
         # mp4/mov/mkv
         video_containers = [b"ftyp", b"moov", b"matroska", b"riff"]
         if any(c in header_bytes for c in video_containers):
-            return "Valid", 100.0, []
+            return "Valid", 100.0, [], meta_info
 
-        return "Suspicious", 70.0, []
+        return "Suspicious", 70.0, [], meta_info
     except Exception:
-        return "Missing", 0.0, []
+        return "Missing", 0.0, [], meta_info
 
 
 def check_sensor_noise(image: Image.Image) -> tuple[str, float]:
@@ -444,7 +464,7 @@ def run_forensic_analysis_image(
         confidence = (1.0 - fused_prob_real) * 100.0
 
     # 3. Standard output scoring formatting
-    metadata_status, metadata_score, meta_tags = check_metadata_integrity(image)
+    metadata_status, metadata_score, meta_tags, meta_info = check_metadata_integrity(image)
     artifact_status, artifact_score, hf_ratio, n_std = compute_artifact_score(image, prediction == "FAKE", confidence)
     vis_status, vis_score, tex_inconsist = compute_visual_consistency(image, prediction == "FAKE")
 
@@ -468,7 +488,10 @@ def run_forensic_analysis_image(
             "metadata_tags": meta_tags,
             "high_freq_ratio": hf_ratio,
             "noise_std": n_std,
-            "texture_inconsistency": tex_inconsist
+            "texture_inconsistency": tex_inconsist,
+            "meta_camera": meta_info["camera"],
+            "meta_timestamp": meta_info["timestamp"],
+            "meta_gps": meta_info["gps"]
         }
     }
 
@@ -633,7 +656,7 @@ def run_forensic_analysis_video(
     else:
         artifact_status = "Not Detected"
 
-    metadata_status, metadata_score, meta_tags = check_video_metadata_integrity(video_path)
+    metadata_status, metadata_score, meta_tags, meta_info = check_video_metadata_integrity(video_path)
 
     reliability_score = compute_reliability(
         prediction, confidence, avg_vis_score, metadata_score, avg_art_score
@@ -667,7 +690,10 @@ def run_forensic_analysis_video(
         "keyframes": frames_pil,
         "proofs": {
             "metadata_tags": meta_tags,
-            "temporal_variance": temporal_variance
+            "temporal_variance": temporal_variance,
+            "meta_camera": meta_info["camera"],
+            "meta_timestamp": meta_info["timestamp"],
+            "meta_gps": meta_info["gps"]
         }
     }
 

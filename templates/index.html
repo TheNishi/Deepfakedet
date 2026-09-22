@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DIGITAL EVIDENCE INTELLIGENCE PLATFORM</title>
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: #00d8ef;">
+                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z" />
+            </svg>
+            EVIDENCE<br>INTELLIGENCE
+        </div>
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active">
+                <svg viewBox="0 0 24 24"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg> Dashboard
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M4,4H20A2,2 0 0,1 22,6V18A2,2 0 0,1 20,20H4A2,2 0 0,1 2,18V6A2,2 0 0,1 4,4M4,6V18H20V6H4M13,8H17V12H13V8M7,8H11V16H7V8M13,14H17V16H13V14Z" /></svg> Image Forensics
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" /></svg> Video Forensics
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2M19,11C19,14.53 16.39,17.44 13,17.93V21H11V17.93C7.61,17.44 5,14.53 5,11H7A5,5 0 0,0 12,16A5,5 0 0,0 17,11H19Z" /></svg> Audio Forensics
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20M11,17.5C11,17.78 10.78,18 10.5,18H8.5C8.22,18 8,17.78 8,17.5V16C8,15.72 8.22,15.5 8.5,15.5H10.5C10.78,15.5 11,15.72 11,16V17.5M16,17.5C16,17.78 15.78,18 15.5,18H13.5C13.22,18 13,17.78 13,17.5V16C13,15.72 13.22,15.5 13.5,15.5H15.5C15.78,15.5 16,15.72 16,16V17.5M11,14.5C11,14.78 10.78,15 10.5,15H8.5C8.22,15 8,14.78 8,14.5V13C8,12.72 8.22,12.5 8.5,12.5H10.5C10.78,12.5 11,12.72 11,13V14.5M16,14.5C16,14.78 15.78,15 15.5,15H13.5C13.22,15 13,14.78 13,14.5V13C13,12.72 13.22,12.5 13.5,12.5H15.5C15.78,12.5 16,12.72 16,13V14.5Z" /></svg> Text Evidence Analysis
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z" /></svg> Metadata Verification
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M15.5,17L12,13L8.5,17L7,15.5L10.5,11.5L7,7.5L8.5,6L12,10L15.5,6L17,7.5L13.5,11.5L17,15.5L15.5,17Z" /></svg> Reliability Score Engine
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4C14.07,4 15.95,4.79 17.38,6.04C16.92,6.96 15.65,8 12,8C8.35,8 7.08,6.96 6.62,6.04C8.05,4.79 9.93,4 12,4M12,20C10.74,20 9.55,19.68 8.5,19.14C8.83,18.3 9.77,17.5 12,17.5C14.23,17.5 15.17,18.3 15.5,19.14C14.45,19.68 13.26,20 12,20M17.59,17.56C16.79,16.5 15.08,15.5 12,15.5C8.92,15.5 7.21,16.5 6.41,17.56C5.53,16.14 5,14.13 5,12C5,11.36 5.09,10.73 5.25,10.13C6.39,11.16 8.35,12 12,12C15.65,12 17.61,11.16 18.75,10.13C18.91,10.73 19,11.36 19,12C19,14.13 18.47,16.14 17.59,17.56Z" /></svg> Explainable AI
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M10.59,13.41C11,13.8 11,14.44 10.59,14.83C10.2,15.22 9.56,15.22 9.17,14.83C7.22,12.88 7.22,9.71 9.17,7.76V7.76L12.71,4.22C14.66,2.27 17.83,2.27 19.78,4.22C21.73,6.17 21.73,9.34 19.78,11.29L18.29,12.78C18.3,11.96 18.17,11.14 17.89,10.36L18.36,9.88C19.54,8.71 19.54,6.81 18.36,5.64C17.19,4.46 15.29,4.46 14.12,5.64L10.59,9.17C9.41,10.34 9.41,12.24 10.59,13.41M13.41,9.17C13.8,8.78 14.44,8.78 14.83,9.17C16.78,11.12 16.78,14.29 14.83,16.24V16.24L11.29,19.78C9.34,21.73 6.17,21.73 4.22,19.78C2.27,17.83 2.27,14.66 4.22,12.71L5.71,11.22C5.7,12.04 5.83,12.86 6.11,13.65L5.64,14.12C4.46,15.29 4.46,17.19 5.64,18.36C6.81,19.54 8.71,19.54 9.88,18.36L13.41,14.83C14.59,13.66 14.59,11.76 13.41,10.59C13,10.2 13,9.56 13.41,9.17Z" /></svg> Chain of Custody
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M15.8,20H14L12,16.6L10,20H8.2L11.1,15.5L8.2,11H10L12,14.4L14,11H15.8L12.9,15.5L15.8,20M13,9V3.5L18.5,9H13Z" /></svg> Report Generator
+            </a>
+            <a href="#" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M17,14H19V17H22V19H19V22H17V19H14V17H17V14M12.18,9A2,2 0 0,0 14.12,7.44L15.08,7L14.12,6.56A2,2 0 0,0 12.18,5A2,2 0 0,0 10.24,6.56L9.28,7L10.24,7.44A2,2 0 0,0 12.18,9M7,12.28A2,2 0 0,0 8.35,10.24L9.5,9.75L8.35,9.26A2,2 0 0,0 7,7.22A2,2 0 0,0 5.65,9.26L4.5,9.75L5.65,10.24A2,2 0 0,0 7,12.28M12.18,11.72A3.33,3.33 0 0,0 9.22,14.11L7.5,14.83L9.22,15.56A3.33,3.33 0 0,0 12.18,17.94A3.33,3.33 0 0,0 15.14,15.56L16,15.2V13.06L15.14,14.11A3.33,3.33 0 0,0 12.18,11.72Z" /></svg> Multi-Evidence Case Analysis
+            </a>
+        </nav>
+        <div class="system-status">
+            <div style="margin-bottom: 12px; font-weight: 600;">SYSTEM STATUS</div>
+            <div style="color: var(--green); margin-bottom: 8px;"> All Systems Operational</div>
+            <div class="status-row"><span>AI Models</span> <span class="status-value operational">Operational</span></div>
+            <div class="status-row"><span>Database</span> <span class="status-value secure">Secure</span></div>
+            <div style="font-size: 10px; margin-top: 12px;">Last Updated: <span id="last-update">Now</span></div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <!-- Top Bar -->
+        <div class="top-header">
+            <div>
+                <div class="header-title">AI DIGITAL EVIDENCE INTELLIGENCE PLATFORM</div>
+                <div class="header-subtitle">Analyze Images, Videos, Audio, Text and Metadata using Deep Learning & Forensic Reliability Scoring</div>
+            </div>
+            <div class="header-right">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; color: var(--text-secondary);"><path fill="currentColor" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+                <div style="position: relative;">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; color: var(--text-secondary);"><path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29C10,4.19 10,4.1 10,4A2,2 0 0,1 12,2A2,2 0 0,1 14,4C14,4.1 14,4.19 14,4.29C16.97,5.17 19,7.9 19,11V17L21,19M14,21A2,2 0 0,1 12,23A2,2 0 0,1 10,21" /></svg>
+                    <span style="position: absolute; top: -5px; right: -5px; background: var(--red); color: #fff; border-radius: 50%; font-size: 9px; padding: 1px 4px;">7</span>
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name">Cyber Forensics Lab</div>
+                    <div class="profile-role">Investigator</div>
+                </div>
+                <div class="profile-avatar">
+                    <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; color: var(--cyan);"><path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Stats Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue"><svg viewBox="0 0 24 24" style="width:24px"><path fill="currentColor" d="M19,19H5V5H19M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M13.96,12.29L11.21,15.83L9.25,13.47L6.5,17H17.5L13.96,12.29Z" /></svg></div>
+                <div class="stat-info">
+                    <div class="stat-label">EVIDENCE PROCESSED</div>
+                    <div class="stat-value" id="stat-evidence">0</div>
+                    <div class="stat-sub positive" id="stat-evidence-change">+0% from last week</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green"><svg viewBox="0 0 24 24" style="width:24px"><path fill="currentColor" d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,21C8.03,19.8 5,15.5 5,11V6.3L12,3.19L19,6.3V11C19,15.5 15.97,19.8 12,21M17,8.5L15.59,7.09L10,12.69L8.41,11.1L7,12.5L10,15.5L17,8.5Z" /></svg></div>
+                <div class="stat-info">
+                    <div class="stat-label">RELIABILITY SCORE (AVG)</div>
+                    <div class="stat-value" id="stat-score">0 /100</div>
+                    <div class="stat-sub positive">High Reliability</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon amber"><svg viewBox="0 0 24 24" style="width:24px"><path fill="currentColor" d="M12,2L1,21H23M12,6L19.53,19H4.47M11,10V14H13V10M11,16V18H13V16" /></svg></div>
+                <div class="stat-info">
+                    <div class="stat-label">THREAT LEVEL</div>
+                    <div class="stat-value" id="stat-threat">LOW</div>
+                    <div class="stat-sub positive">No immediate threat</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon purple"><svg viewBox="0 0 24 24" style="width:24px"><path fill="currentColor" d="M2.28,14.63C2,14.33 2,13.8 2.31,13.47L10.33,5.55L14,9.23L5.94,17.15L2.28,14.63M16.97,4.03C17.29,3.71 17.76,3.71 18.06,4.03L21,6.9C21.31,7.21 21.31,7.7 21,8.03L15.42,13.62L11.75,9.94L16.97,4.03M4.25,18.7L5.86,19.81L14.77,10.87L13.12,9.75L4.25,18.7Z" /></svg></div>
+                <div class="stat-info">
+                    <div class="stat-label">COURT ADMISSIBILITY</div>
+                    <div class="stat-value" id="stat-court">HIGH</div>
+                    <div class="stat-sub neutral">Likely Admissible</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon blue"><svg viewBox="0 0 24 24" style="width:24px"><path fill="currentColor" d="M19,20H4C2.89,20 2,19.1 2,18V6C2,4.89 2.89,4 4,4H10L12,6H19A2,2 0 0,1 21,8H21V4C21,2.89 20.1,2 19,2Z" /></svg></div>
+                <div class="stat-info">
+                    <div class="stat-label">ACTIVE CASES</div>
+                    <div class="stat-value" id="stat-cases">0</div>
+                    <div class="stat-sub" style="color:var(--cyan); cursor:pointer;">View all cases -></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            
+            <!-- UPLOAD PANEL -->
+            <div class="panel panel-upload">
+                <div class="panel-title">UPLOAD EVIDENCE</div>
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg viewBox="0 0 24 24" style="width:48px;height:48px"><path fill="currentColor" d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z" /></svg>
+                    </div>
+                    <div id="uploadText">Drag & Drop Evidence Here<br>or</div>
+                    <div id="processing-timer" style="font-size: 12px; color: var(--cyan); margin-top: 8px; font-weight: bold; min-height: 16px;"></div>
+                    <button class="upload-btn" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                    <input type="file" id="fileInput" style="display:none" multiple>
+                </div>
+                <div class="upload-types">
+                    <div class="type-item active" id="type-image"><i><svg viewBox="0 0 24 24" width="16"><path fill="currentColor" d="M19,19H5V5H19M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.89,21 5,21H19C20.11,21 21,20.1 21,19V5C21,3.89 20.11,3 19,3M13.96,12.29L11.21,15.83L9.25,13.47L6.5,17H17.5" /></svg></i> Images</div>
+                    <div class="type-item" id="type-video"><i><svg viewBox="0 0 24 24" width="16"><path fill="currentColor" d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z" /></svg></i> Videos</div>
+                    <div class="type-item" id="type-audio"><i><svg viewBox="0 0 24 24" width="16"><path fill="currentColor" d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2" /></svg></i> Audio</div>
+                    <div class="type-item" id="type-text"><i><svg viewBox="0 0 24 24" width="16"><path fill="currentColor" d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20" /></svg></i> Documents</div>
+                </div>
+            </div>
+
+            <!-- SCORE ENGINE -->
+            <div class="panel panel-score" id="panel-score">
+                <div class="panel-title">RELIABILITY SCORE ENGINE</div>
+                <div class="score-circle">
+                    <canvas id="scoreChart"></canvas>
+                    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center;">
+                        <div style="font-family:var(--font-display); font-size:42px; font-weight:700; line-height:1;" id="score-text">0</div>
+                        <div style="font-size:12px; color:var(--text-secondary);">/100</div>
+                    </div>
+                </div>
+                <div style="text-align:center; font-weight:600; color:var(--green); margin-bottom:20px; font-size:12px;" id="score-label">WAITING...</div>
+                
+                <div class="score-details">
+                    <div class="score-row"><span>Authenticity Score</span> <span class="score-value" id="score-auth">0%</span></div>
+                    <div class="score-row"><span>AI Generation Probability</span> <span class="score-value" id="score-ai">0%</span></div>
+                    <div class="score-row"><span>Tampering Probability</span> <span class="score-value" id="score-tampering">0%</span></div>
+                    <div class="score-row"><span>Metadata Integrity</span> <span class="score-value" id="score-meta">91%</span></div>
+                </div>
+                <button class="view-btn">View Full Analysis -></button>
+            </div>
+
+            <!-- EVIDENCE PREVIEW & XAI -->
+            <div class="panel panel-preview" id="panel-preview">
+                <div class="panel-title">EVIDENCE PREVIEW & EXPLAINABLE AI</div>
+                <div class="preview-images">
+                    <div class="img-box">
+                        <div class="img-label">Original</div>
+                        <img id="preview-orig" src="" alt="">
+                    </div>
+                    <div class="img-box">
+                        <div class="img-label" style="color:var(--cyan)">AI Heatmap</div>
+                        <img id="preview-ai" src="" alt="">
+                    </div>
+                </div>
+                <div class="preview-analysis">
+                    <div class="suspicious-list">
+                        <div style="color:var(--text-secondary); font-size:11px; margin-bottom:8px;">Why Suspicious?</div>
+                        <ul id="sus-list" style="padding:0">
+                            <li>Unnatural texture patterns detected</li>
+                            <li>Inconsistent lighting & shadows</li>
+                            <li>GAN artifacts in high frequency regions</li>
+                            <li>Compression anomalies detected</li>
+                        </ul>
+                    </div>
+                    <div class="confidence-box">
+                        <div style="color:var(--text-secondary); font-size:11px; margin-bottom:8px;">Confidence</div>
+                        <div id="confidence-circle" style="width:60px; height:60px; border-radius:50%; border:3px solid var(--green); margin:0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                            <div style="font-weight:700; font-size:16px;" id="confidence-val">0%</div>
+                            <div style="font-size:9px;" id="confidence-label">Auth</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- METADATA -->
+            <div class="panel panel-metadata" id="panel-metadata">
+                <div class="panel-title">METADATA VERIFICATION</div>
+                <div class="kv-list">
+                    <div class="kv-row"><span class="kv-key">Camera Model</span><span class="kv-val cyan" id="meta-camera">Canon EOS 80D</span></div>
+                    <div class="kv-row"><span class="kv-key">GPS Coordinates</span><span class="kv-val green" id="meta-gps">28.6139* N, 77.2090* E ~</span></div>
+                    <div class="kv-row"><span class="kv-key">Timestamp</span><span class="kv-val green" id="meta-time">15 Aug 2026, 10:24:31 ~</span></div>
+                    <div class="kv-row"><span class="kv-key">Metadata Integrity</span><span class="kv-val green" id="meta-integrity">Verified ~</span></div>
+                </div>
+                <div style="margin-top:20px; color:var(--green); font-size:11px; display:flex; gap:6px;">
+                    <svg viewBox="0 0 24 24" width="14"><path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12S6.5 22 12 22 22 17.5 22 12 17.5 2 12 2M10 17L5 12L6.41 10.59L10 14.17L17.59 6.58L19 8L10 17Z"/></svg> No metadata tampering detected
+                </div>
+            </div>
+
+            <!-- CHAIN OF CUSTODY -->
+            <div class="panel panel-chain" id="panel-chain">
+                <div class="panel-title">CHAIN OF CUSTODY</div>
+                <div class="kv-list">
+                    <div class="kv-row"><span class="kv-key">Evidence ID</span><span class="kv-val">EVD-2026-00124</span></div>
+                    <div class="kv-row"><span class="kv-key">SHA256 Hash</span><span class="kv-val cyan">a4f8b7c32d...9f2a1d</span></div>
+                    <div class="kv-row"><span class="kv-key">Uploaded By</span><span class="kv-val">Inv. Arjun Verma</span></div>
+                    <div class="kv-row"><span class="kv-key">Upload Time</span><span class="kv-val">15 Aug 2026, 10:24:31</span></div>
+                    <div class="kv-row"><span class="kv-key">Verification Status</span><span class="kv-val green">Verified ~</span></div>
+                </div>
+                <button class="view-btn">View Full Chain -></button>
+            </div>
+
+            <!-- TEXT EVIDENCE -->
+            <div class="panel panel-text" id="panel-text">
+                <div class="panel-title">TEXT EVIDENCE ANALYSIS</div>
+                <div class="kv-list">
+                    <div class="kv-row"><span class="kv-key">Sentiment</span><span class="kv-val" id="text-sentiment">Neutral</span></div>
+                    <div class="kv-row"><span class="kv-key">Threat Detection</span><span class="kv-val green" id="text-threat">Low</span></div>
+                    <div class="kv-row"><span class="kv-key">Toxicity</span><span class="kv-val green" id="text-toxicity">Low</span></div>
+                    <div class="kv-row"><span class="kv-key">Fake News Indicator</span><span class="kv-val amber" id="text-fake">Medium</span></div>
+                    <div class="kv-row"><span class="kv-key">AI Generated Probability</span><span class="kv-val" id="text-ai">18%</span></div>
+                </div>
+                <button class="view-btn">Analyze Text -></button>
+            </div>
+
+            <!-- AUDIO FORENSICS -->
+            <div class="panel panel-audio" id="panel-audio">
+                <div class="panel-title">AUDIO FORENSICS</div>
+                <div class="kv-list">
+                    <div class="kv-row"><span class="kv-key">Voice Clone Probability</span><span class="kv-val" id="audio-clone">23%</span></div>
+                    <div class="kv-row"><span class="kv-key">Speaker Verification</span><span class="kv-val green" id="audio-speaker">Match</span></div>
+                    <div class="kv-row"><span class="kv-key">Deepfake Audio Detection</span><span class="kv-val green" id="audio-deepfake">Low</span></div>
+                    <div class="kv-row"><span class="kv-key">Noise Manipulation</span><span class="kv-val green" id="audio-noise">Not Detected</span></div>
+                    <div class="kv-row"><span class="kv-key">Audio Integrity</span><span class="kv-val green" id="audio-integrity">High</span></div>
+                </div>
+                <button class="view-btn">Analyze Audio -></button>
+            </div>
+
+            <!-- MULTI EVIDENCE RADAR -->
+            <div class="panel panel-radar" id="panel-radar">
+                <div style="width:100%; display:flex; flex-direction:column;">
+                    <div class="panel-title">MULTI-EVIDENCE CASE ANALYSIS</div>
+                    <div style="display:flex; flex:1;">
+                        <div class="radar-container"><canvas id="radarChart"></canvas></div>
+                        <div class="radar-stats">
+                            <div style="font-size:10px; color:var(--text-secondary); text-align:center; margin-bottom:4px;">OVERALL CASE<br>RELIABILITY</div>
+                            <div style="font-family:var(--font-display); font-size:32px; font-weight:700; color:var(--green); display:flex; align-items:baseline;" id="radar-avg">
+                                0 <span style="font-size:12px; color:var(--text-secondary);">/100</span>
+                            </div>
+                            <div style="font-size:10px; font-weight:600; color:var(--green); margin:8px 0; text-align:center;" id="radar-lbl">WAITING...</div>
+                            <div style="font-size:9px; color:var(--text-secondary); text-align:center;">Consistent evidence across<br>multiple modalities</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIMELINE -->
+            <div class="panel panel-timeline" id="panel-timeline">
+                <div class="panel-title">INVESTIGATION TIMELINE</div>
+                <div class="timeline">
+                    <div class="tl-item">
+                        <div class="tl-icon"></div>
+                        <div class="tl-content">
+                            <div class="tl-title">Evidence Uploaded</div>
+                            <div class="tl-time">15 Aug 2026, 10:24:31</div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-icon"></div>
+                        <div class="tl-content">
+                            <div class="tl-title">Metadata Verification</div>
+                            <div class="tl-time">15 Aug 2026, 10:24:35</div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-icon"></div>
+                        <div class="tl-content">
+                            <div class="tl-title">AI Analysis Started</div>
+                            <div class="tl-time">15 Aug 2026, 10:24:40</div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-icon"></div>
+                        <div class="tl-content">
+                            <div class="tl-title" style="color:var(--cyan)">Reliability Score Generated</div>
+                            <div class="tl-time">15 Aug 2026, 10:25:18</div>
+                        </div>
+                    </div>
+                    <div class="tl-item">
+                        <div class="tl-icon"></div>
+                        <div class="tl-content">
+                            <div class="tl-title">Report Generated</div>
+                            <div class="tl-time">15 Aug 2026, 10:25:25</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPORT GENERATOR -->
+            <div class="panel panel-report" id="panel-report">
+                <div class="panel-title">REPORT GENERATOR</div>
+                <div class="report-preview">
+                    <div style="font-weight:bold; font-size:12px; margin-bottom:8px; display:flex; justify-content:space-between;">
+                        <span>DIGITAL FORENSIC REPORT</span>
+                        <svg viewBox="0 0 24 24" width="16" style="fill:#555"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+                    </div>
+                    <div style="color:#666; margin-bottom:12px;">CASE ID: EVD-2026-00124</div>
+                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding-bottom:4px; margin-bottom:4px;"><span>Evidence Type</span><span>Image</span></div>
+                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding-bottom:4px; margin-bottom:4px;"><span>Reliability Score</span><span>87 / 100</span></div>
+                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding-bottom:4px; margin-bottom:4px;"><span>Risk Assessment</span><span>Low</span></div>
+                    <div style="display:flex; justify-content:space-between; border-bottom:1px solid #eee; padding-bottom:4px; margin-bottom:4px;"><span>Court Admissibility</span><span>High</span></div>
+                    <div style="display:flex; justify-content:space-between; padding-bottom:4px; margin-bottom:4px;"><span>Conclusion</span><span>Likely Authentic</span></div>
+                </div>
+                <button class="report-btn" id="btn-report" onclick="generateReport()" disabled>
+                    <svg style="width:16px;height:16px" viewBox="0 0 24 24"><path fill="currentColor" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg>
+                    Download PDF Report
+                </button>
+            </div>
+
+            <!-- RECENT ACTIVITY -->
+            <div class="panel panel-activity" id="panel-activity">
+                <div class="panel-title">RECENT ACTIVITY</div>
+                <div class="activity-list">
+                    <div class="act-item">
+                        <div class="act-icon"><svg viewBox="0 0 24 24" width="16" fill="var(--green)"><path d="M14 2H6C4.89 2 4 2.9 4 4V20C4 21.1 4.89 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M12 18L8 14H10.5V11H13.5V14H16L12 18M13 9V3.5L18.5 9H13Z"/></svg></div>
+                        <div class="act-info"><div class="act-title">Image analyzed</div><div class="act-sub">EVD-2026-00124</div></div>
+                        <div class="act-time">10:25 AM</div>
+                    </div>
+                    <div class="act-item">
+                        <div class="act-icon"><svg viewBox="0 0 24 24" width="16" fill="var(--text-secondary)"><path d="M17,10.5V7A1,1 0 0,0 16,6H4A1,1 0 0,0 3,7V17A1,1 0 0,0 4,18H16A1,1 0 0,0 17,17V13.5L21,17.5V6.5L17,10.5Z"/></svg></div>
+                        <div class="act-info"><div class="act-title">Video analyzed</div><div class="act-sub">EVD-2026-00123</div></div>
+                        <div class="act-time">10:18 AM</div>
+                    </div>
+                    <div class="act-item">
+                        <div class="act-icon"><svg viewBox="0 0 24 24" width="16" fill="var(--red)"><path d="M12,2A3,3 0 0,1 15,5V11A3,3 0 0,1 12,14A3,3 0 0,1 9,11V5A3,3 0 0,1 12,2"/></svg></div>
+                        <div class="act-info"><div class="act-title">Audio analyzed</div><div class="act-sub">EVD-2026-00122</div></div>
+                        <div class="act-time">10:11 AM</div>
+                    </div>
+                    <div class="act-item">
+                        <div class="act-icon"><svg viewBox="0 0 24 24" width="16" fill="var(--text-secondary)"><path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2"/></svg></div>
+                        <div class="act-info"><div class="act-title">Text analyzed</div><div class="act-sub">EVD-2026-00121</div></div>
+                        <div class="act-time">10:05 AM</div>
+                    </div>
+                    <div class="act-item">
+                        <div class="act-icon"><svg viewBox="0 0 24 24" width="16" fill="var(--green)"><path d="M12,2C15.31,2 18,4.66 18,7.95C18,12.41 12,19 12,19C12,19 6,12.41 6,7.95C6,4.66 8.69,2 12,2M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M20,19C20,21.21 16.42,23 12,23C7.58,23 4,21.21 4,19C4,17.71 5.22,16.56 7.11,15.83L7.75,16.74C6.67,17.19 6,17.81 6,18.5C6,19.88 8.69,21 12,21C15.31,21 18,19.88 18,18.5C18,17.81 17.33,17.19 16.25,16.74L16.89,15.83C18.78,16.56 20,17.71 20,19Z"/></svg></div>
+                        <div class="act-info"><div class="act-title">Metadata verified</div><div class="act-sub">EVD-2026-00120</div></div>
+                        <div class="act-time">09:58 AM</div>
+                    </div>
+                </div>
+                <div style="text-align:center; font-size:11px; color:var(--cyan); margin-top:16px; cursor:pointer;">View All Activity -></div>
+            </div>
+            
+        </div>
+        
+        <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-secondary); margin-top:20px;">
+            <div>(c) 2026 AI Digital Evidence Intelligence Platform. All rights reserved.</div>
+            <div>Secure ~ Encrypted ~ Forensic Grade</div>
+        </div>
+    </main>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
