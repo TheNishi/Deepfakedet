@@ -1,4 +1,4 @@
-# Deepfake Image Detection with EfficientNet, FasterViT, and EfficientFormerV2
+# AI Based Digital Evidence
 
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![License](https://img.shields.io/github/license/thourihan/DeepfakeDetection.svg)
